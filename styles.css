@@ -269,15 +269,15 @@ h2 {
 .proj-gallery figure[hidden] {
   display:none
 }
-.proj-gallery figure:has(a:hover),.proj-gallery figure:has(a:focus-visible) {
+.proj-gallery figure:has(.shot-trigger:hover),.proj-gallery figure:has(.shot-trigger:focus-visible) {
   border-color:var(--accent);
   box-shadow:0 12px 28px rgb(0 0 0 / 24%)
 }
-.proj-gallery figure:has(a:focus-visible) {
+.proj-gallery figure:has(.shot-trigger:focus-visible) {
   outline:3px solid var(--accent);
   outline-offset:3px
 }
-.proj-gallery a {
+.shot-trigger {
   display:flex;
   width:100%;
   min-width:0;
@@ -285,12 +285,15 @@ h2 {
   align-items:center;
   justify-content:flex-start;
   overflow:hidden;
+  padding:0;
+  border:0;
   border-radius:25px;
+  background:transparent;
   color:var(--muted);
-  text-decoration:none;
-  scroll-snap-align:start
+  font:inherit;
+  cursor:pointer
 }
-.proj-gallery a:focus-visible {
+.shot-trigger:focus-visible {
   outline:none
 }
 .proj-gallery img {
@@ -319,8 +322,58 @@ h2 {
   font-weight:700;
   text-align:center
 }
-.proj-gallery a:hover .cap,.proj-gallery a:focus-visible .cap {
+.shot-trigger:hover .cap,.shot-trigger:focus-visible .cap {
   color:var(--accent)
+}
+.shot-popover:popover-open {
+  position:fixed;
+  inset:0;
+  display:grid;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  max-width:none;
+  max-height:none;
+  place-items:center;
+  margin:0;
+  padding:clamp(16px,4vw,48px);
+  overflow:auto;
+  border:0;
+  background:rgb(8 12 22 / 92%);
+  color:#FFFFFF
+}
+.shot-popover::backdrop {
+  background:rgb(8 12 22 / 82%);
+  backdrop-filter:blur(4px)
+}
+.shot-popover > img {
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:calc(100dvh - 32px);
+  object-fit:contain
+}
+.shot-close {
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:1;
+  min-width:64px;
+  min-height:44px;
+  padding:8px 12px;
+  border:1px solid #596174;
+  border-radius:999px;
+  background:#242A38;
+  color:#FFFFFF;
+  font:inherit;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer
+}
+.shot-trigger:focus-visible,.shot-close:focus-visible {
+  outline:3px solid var(--accent);
+  outline-offset:3px
 }
 .sr {
   position:absolute;
@@ -433,12 +486,13 @@ h2 {
 @media (prefers-reduced-motion:reduce) {
   .proj,
   .proj-gallery figure,
-  .proj-gallery img {
+  .proj-gallery img,
+  .shot-popover {
     transition:none
   }
 }
 @media (prefers-reduced-motion:no-preference) {
-  .proj-gallery a:hover img {
+  .shot-trigger:hover img {
     transform:translateY(-3px)
   }
 }
