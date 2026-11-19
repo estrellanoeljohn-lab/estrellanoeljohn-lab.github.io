@@ -5,14 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noel John Estrella | IT Student</title>
 <meta name="description" content="Information Technology student in the Philippines, available for OJT starting December 2026. See my capstone, a food ordering app, and apps I published online.">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1218" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07070b">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Noel John Estrella | IT Student">
 <meta property="og:description" content="IT student available for OJT starting December 2026. See my projects.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232F4BC4'/%3E%3Ctext x='32' y='44' font-size='36' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2300f0ff'/%3E%3Ctext x='32' y='44' font-size='36' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Shippori+Mincho:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -27,6 +30,7 @@
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
 </nav>
+<button class="theme-toggle" type="button" aria-label="Switch theme between Limitless and Shrine mode" title="Switch Cursed Technique">∞</button>
 </div>
 </header>
 
@@ -34,6 +38,7 @@
 <div class="wrap">
 
 <div class="hero" id="top">
+<div class="watermark" aria-hidden="true">無量空処</div>
 <p class="eyebrow">BS Information Technology · Expected 2027</p>
 <h1>Hi, I’m Noel. I learn IT by building real things.</h1>
 <p class="lead">I’m an Information Technology student in Pampanga, Philippines. I’ve built a capstone app for a nursing home, a food ordering app, and two apps I published online. I’m looking for opportunities to learn and contribute on a real IT team.</p>
@@ -46,7 +51,8 @@
 </div>
 
 <section id="projects" aria-labelledby="projects-title">
-<h2 id="projects-title">Projects</h2>
+<div class="watermark" aria-hidden="true">領域展開</div>
+<h2 id="projects-title"><span class="section-num" aria-hidden="true">01</span>Projects</h2>
 <p class="sub">I build with the help of AI coding assistants such as Claude, Codex, and Gemini. I test what they produce, fix what breaks, and learn from it.</p>
 <div class="grid">
 
@@ -154,7 +160,7 @@
 </section>
 
 <section id="help" aria-labelledby="help-title">
-<h2 id="help-title">What I can help with</h2>
+<h2 id="help-title"><span class="section-num" aria-hidden="true">02</span>What I can help with</h2>
 <div class="help">
 <div><h3>Build app features</h3><p>Screens, forms, and data in Flutter, FlutterFlow, and Firebase.</p></div>
 <div><h3>Test and document</h3><p>Unit tests for logic, plus data dictionaries and system diagrams.</p></div>
@@ -164,7 +170,8 @@
 </section>
 
 <section id="skills" aria-labelledby="skills-title">
-<h2 id="skills-title">Skills</h2>
+<div class="watermark" aria-hidden="true">呪力</div>
+<h2 id="skills-title"><span class="section-num" aria-hidden="true">03</span>Skills</h2>
 <div class="skills">
 <div><h3>App development</h3><p>Flutter, Dart, FlutterFlow, low-code and no-code tools</p></div>
 <div><h3>Backend and tools</h3><p>Firebase (Authentication, Firestore, Hosting), Git and GitHub</p></div>
@@ -174,13 +181,14 @@
 </section>
 
 <section id="about" class="about" aria-labelledby="about-title">
-<h2 id="about-title">About</h2>
+<h2 id="about-title"><span class="section-num" aria-hidden="true">04</span>About</h2>
 <p>I’m a Bachelor of Science in Information Technology student, expected to graduate in 2027, at Dalubhasaan Politekniko ng Lungsod ng Baliuag in Bulacan.</p>
 <p>I learn best by building things people can use. My projects went from a prototype to a live link that anyone can open on a phone. I’m not tied to one tool or one kind of role. I’m willing to learn and practice whatever an IT team needs, and I’m looking for opportunities where I can contribute, gain experience, and keep growing.</p>
 </section>
 
 <section id="contact" aria-labelledby="contact-title">
-<h2 id="contact-title">Contact</h2>
+<div class="watermark" aria-hidden="true">黒閃</div>
+<h2 id="contact-title"><span class="section-num" aria-hidden="true">05</span>Contact</h2>
 <p>Pampanga, Philippines. Available for OJT starting December 2026, onsite. I’d love to hear from you.</p>
 <div class="links">
 <a href="mailto:estrellanoeljohn@gmail.com">estrellanoeljohn@gmail.com</a>
@@ -195,7 +203,7 @@
 
 <footer>
 <div class="wrap">
-<span> Noel John Estrella</span>
+<span>© Noel John Estrella · <span class="footer-jjk" aria-hidden="true">呪術廻戦</span></span>
 <a href="#top">Back to top</a>
 </div>
 </footer>
