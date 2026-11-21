@@ -287,24 +287,8 @@ nav a.active {
   max-width: 380px;
   object-fit: cover;
   object-position: center top;
-  filter: drop-shadow(0 0 22px var(--accent-primary));
   mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
-  transition: filter 0.35s ease;
-  animation: portraitBreathe 4s ease-in-out infinite;
-}
-
-.portrait-frame:hover img {
-  filter: drop-shadow(0 0 28px var(--accent-primary));
-}
-
-@keyframes portraitBreathe {
-  0%, 100% {
-    filter: drop-shadow(0 0 18px var(--accent-primary));
-  }
-  50% {
-    filter: drop-shadow(0 0 26px var(--accent-primary));
-  }
 }
 
 /* Anime corner bracket — top-left */
@@ -1228,10 +1212,6 @@ footer a:hover {
   .reveal {
     opacity: 1;
     transform: none;
-  }
-
-  .portrait-frame img {
-    animation: none;
   }
 
   .proj,
