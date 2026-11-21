@@ -13,6 +13,7 @@
   --muted: #9892a6;
   --line: rgba(90, 24, 154, 0.25);
   --accent: #00f0ff;
+  --accent-primary: #00f0ff;
   --accent-alt: #5a189a;
   --on-accent: #07070b;
   --tag: rgba(0, 240, 255, 0.08);
@@ -29,6 +30,7 @@
 /* ─── Malevolent Shrine (Sukuna) ────────────────────────────────── */
 [data-theme="shrine"] {
   --accent: #ff1e42;
+  --accent-primary: #ff1e42;
   --accent-alt: #7f0019;
   --on-accent: #ffffff;
   --line: rgba(255, 30, 66, 0.25);
@@ -223,7 +225,7 @@ nav a.active {
    HERO
    =================================================================== */
 .hero {
-  padding: 64px 0 24px;
+  padding: clamp(88px, 11vw, 112px) 0 32px;
   position: relative;
 }
 
@@ -236,11 +238,80 @@ nav a.active {
   z-index: 0;
 }
 
+/* ─── Hero Two-Column Layout ───────────────────────────────────── */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  align-items: center;
+  gap: 36px;
+}
+
+.hero-text {
+  min-width: 0;
+}
+
+/* ─── Portrait (Transparent Cutout) ────────────────────────────── */
+.hero-portrait {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.portrait-frame {
+  position: relative;
+  width: clamp(240px, 26vw, 380px);
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.35s ease;
+}
+
+.portrait-frame:hover {
+  transform: translateY(-6px);
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 380px;
+  object-fit: cover;
+  object-position: center top;
+  filter: drop-shadow(0 0 22px var(--accent-primary));
+  mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+  transition: filter 0.35s ease;
+  animation: portraitBreathe 4s ease-in-out infinite;
+}
+
+.portrait-frame:hover img {
+  filter: drop-shadow(0 0 28px var(--accent-primary));
+}
+
+@keyframes portraitBreathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 18px var(--accent-primary));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px var(--accent-primary));
+  }
+}
+
 /* Anime corner bracket — top-left */
 .hero::before {
   content: "";
   position: absolute;
-  top: 48px;
+  top: 64px;
   left: -8px;
   width: 20px;
   height: 20px;
@@ -329,12 +400,28 @@ h1 {
 }
 
 /* ===================================================================
-   BUTTONS — ACTIONS
+   BUTTONS — ACTIONS & CTA
    =================================================================== */
-.actions {
+.actions,
+.cta-group {
   display: flex;
-  gap: 12px;
+  gap: 8px 10px;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (min-width: 761px) {
+  .hero .actions,
+  .hero .cta-group {
+    flex-wrap: nowrap;
+  }
+}
+
+.hero .actions .btn,
+.hero .cta-group .btn {
+  padding: 10px 14px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 /* ─── Base Button ───────────────────────────────────────────────── */
@@ -1089,6 +1176,19 @@ footer a:hover {
     display: none;
   }
 
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-portrait {
+    order: -1;
+  }
+
+  .portrait-frame {
+    width: clamp(200px, 50vw, 280px);
+  }
+
   .watermark {
     display: none;
   }
@@ -1128,6 +1228,10 @@ footer a:hover {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .portrait-frame img {
+    animation: none;
   }
 
   .proj,
