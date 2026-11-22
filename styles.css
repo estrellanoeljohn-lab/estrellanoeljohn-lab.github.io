@@ -856,6 +856,7 @@ h2 {
 .proj-card-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
 }
 
@@ -870,6 +871,24 @@ h2 {
 
 .proj-card-actions .btn:not(.primary) {
   background: var(--bg);
+}
+
+/* Subtle non-clickable muted badge/note (Private Repo) */
+.proj-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  background: rgba(14, 14, 24, 0.5);
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+  user-select: none;
 }
 
 /* ===================================================================

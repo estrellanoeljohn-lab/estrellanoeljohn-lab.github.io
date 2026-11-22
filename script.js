@@ -384,7 +384,28 @@
     function openModal(panelId, triggerEl) {
       triggerSource = triggerEl;
       panels.forEach((p) => {
-        p.hidden = p.id !== panelId;
+        const isTarget = p.id === panelId;
+        p.hidden = !isTarget;
+
+        if (isTarget) {
+          // Conditionally hide action links if no valid URL is defined
+          p.querySelectorAll('.case-study-actions a').forEach((link) => {
+            const href = (link.getAttribute('href') || '').trim();
+            if (!href || href === '#' || href === 'javascript:void(0)') {
+              link.style.display = 'none';
+            } else {
+              link.style.display = '';
+            }
+          });
+
+          // Hide case-study-actions container if it has no visible children
+          p.querySelectorAll('.case-study-actions').forEach((actions) => {
+            const visibleChildren = [...actions.children].filter(
+              (el) => el.style.display !== 'none'
+            );
+            actions.style.display = visibleChildren.length ? '' : 'none';
+          });
+        }
       });
 
       modal.hidden = false;
