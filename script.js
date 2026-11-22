@@ -369,7 +369,116 @@
   }
 
   /* ----------------------------------------------------------
-     9. Domain Expansion Case Study Modal
+     9. Horizontal 2-Phone Scrollable Carousels
+     ---------------------------------------------------------- */
+  function initCarousels() {
+    const carousels = $$('[data-carousel]');
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector('.carousel-track');
+      if (!track) return;
+
+      const items = $$('.carousel-item', track);
+      if (items.length === 0) return;
+
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dots = $$('.carousel-dot', carousel);
+
+      function getActiveIndex() {
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+          return items.length - 1;
+        }
+        const trackRect = track.getBoundingClientRect();
+        const trackPaddingLeft = parseFloat(window.getComputedStyle(track).paddingLeft) || 0;
+        const targetX = trackRect.left + trackPaddingLeft;
+        let closestIdx = 0;
+        let minDiff = Infinity;
+        items.forEach((item, idx) => {
+          const itemRect = item.getBoundingClientRect();
+          const diff = Math.abs(itemRect.left - targetX);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIdx = idx;
+          }
+        });
+        return closestIdx;
+      }
+
+      function updateDots() {
+        const activeIdx = getActiveIndex();
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeIdx);
+        });
+      }
+
+      function scrollToItem(targetIndex) {
+        const clampedIndex = Math.max(0, Math.min(items.length - 1, targetIndex));
+        const targetItem = items[clampedIndex];
+        if (!targetItem) return;
+
+        const trackRect = track.getBoundingClientRect();
+        const itemRect = targetItem.getBoundingClientRect();
+        const trackPaddingLeft = parseFloat(window.getComputedStyle(track).paddingLeft) || 0;
+        const targetLeft = track.scrollLeft + (itemRect.left - (trackRect.left + trackPaddingLeft));
+
+        track.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const current = getActiveIndex();
+          let nextIndex = current - 1;
+          if (nextIndex < 0) {
+            nextIndex = items.length - 1;
+          }
+          scrollToItem(nextIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const current = getActiveIndex();
+          let nextIndex = current + 1;
+          if (nextIndex >= items.length) {
+            nextIndex = 0;
+          }
+          scrollToItem(nextIndex);
+        });
+      }
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          scrollToItem(idx);
+        });
+      });
+
+      let ticking = false;
+      track.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateDots();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateDots();
+    });
+  }
+
+  /* ----------------------------------------------------------
+     10. Domain Expansion Case Study Modal
      ---------------------------------------------------------- */
   function initCaseStudyModal() {
     const modal = $('#caseStudyModal');
@@ -405,6 +514,14 @@
             );
             actions.style.display = visibleChildren.length ? '' : 'none';
           });
+
+          // Reset carousel scroll and active dot inside active panel
+          p.querySelectorAll('[data-carousel]').forEach((car) => {
+            const track = car.querySelector('.carousel-track');
+            if (track) track.scrollLeft = 0;
+            const dots = car.querySelectorAll('.carousel-dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+          });
         }
       });
 
@@ -432,7 +549,7 @@
             triggerSource.focus();
           }
         }
-      }, 300);
+      }, 260);
     }
 
     triggers.forEach((btn) => {
@@ -560,6 +677,7 @@
     initHeroReticles();
     initNavHighlight();
     initProjectFilters();
+    initCarousels();
     initCaseStudyModal();
     initImageLightbox();
   });

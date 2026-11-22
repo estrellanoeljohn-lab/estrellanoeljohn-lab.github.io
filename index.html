@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Shippori+Mincho:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=10">
-<script src="script.js?v=10" defer></script>
+<link rel="stylesheet" href="styles.css?v=14">
+<script src="script.js?v=14" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -79,12 +79,28 @@
     <div class="proj-card-top">
       <span class="proj-badge">Capstone · Team</span>
     </div>
-    <div class="proj-thumb-frame proj-showcase">
-      <div class="showcase-screen">
-        <img src="images/medicaretract-project/medicaretract-welcomescreen.png" alt="Medicare Track mobile welcome screen" class="thumb-phone" loading="lazy">
+    <div class="proj-carousel" data-carousel>
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous Medicare Track screenshots" data-dir="-1">‹</button>
+      <div class="proj-thumb-frame proj-showcase carousel-track">
+        <div class="showcase-screen carousel-item" data-index="0">
+          <img src="images/medicaretract-project/medicaretract-welcomescreen.png" alt="Medicare Track Welcome screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="1">
+          <img src="images/medicaretract-project/medicaretract-adminhomescreen.png" alt="Medicare Track Admin screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="2">
+          <img src="images/medicaretract-project/medicaretract-caregiverhomescreen.png" alt="Medicare Track Caregiver screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="3">
+          <img src="images/medicaretract-project/medicaretract-familyhomescreen.png" alt="Medicare Track Family screen" class="thumb-phone" loading="lazy">
+        </div>
       </div>
-      <div class="showcase-screen">
-        <img src="images/medicaretract-project/medicaretract-adminhomescreen.png" alt="Medicare Track admin task management screen" class="thumb-phone" loading="lazy">
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Next Medicare Track screenshots" data-dir="1">›</button>
+      <div class="carousel-dots" role="tablist" aria-label="Medicare Track screen dots">
+        <button type="button" class="carousel-dot active" aria-label="Screen 1 (Welcome)" data-slide="0"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 2 (Admin)" data-slide="1"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 3 (Caregiver)" data-slide="2"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 4 (Family)" data-slide="3"></button>
       </div>
     </div>
     <div class="proj-card-content">
@@ -107,12 +123,28 @@
     <div class="proj-card-top">
       <span class="proj-badge">Academic · Solo</span>
     </div>
-    <div class="proj-thumb-frame proj-showcase">
-      <div class="showcase-screen">
-        <img src="images/takoyakiorderingsystem-project/cashierside.png" alt="Takoyaki Ordering App cashier screen" class="thumb-phone" loading="lazy">
+    <div class="proj-carousel" data-carousel>
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous Takoyaki Ordering App screenshots" data-dir="-1">‹</button>
+      <div class="proj-thumb-frame proj-showcase carousel-track">
+        <div class="showcase-screen carousel-item" data-index="0">
+          <img src="images/takoyakiorderingsystem-project/menu.png" alt="Takoyaki Ordering App Menu screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="1">
+          <img src="images/takoyakiorderingsystem-project/cashierside.png" alt="Takoyaki Ordering App Cashier screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="2">
+          <img src="images/takoyakiorderingsystem-project/dispatcherside.png" alt="Takoyaki Ordering App Dispatcher screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="3">
+          <img src="images/takoyakiorderingsystem-project/riderside.png" alt="Takoyaki Ordering App Rider screen" class="thumb-phone" loading="lazy">
+        </div>
       </div>
-      <div class="showcase-screen">
-        <img src="images/takoyakiorderingsystem-project/riderside.png" alt="Takoyaki Ordering App rider screen" class="thumb-phone" loading="lazy">
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Next Takoyaki Ordering App screenshots" data-dir="1">›</button>
+      <div class="carousel-dots" role="tablist" aria-label="Takoyaki Ordering App screen dots">
+        <button type="button" class="carousel-dot active" aria-label="Screen 1 (Menu)" data-slide="0"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 2 (Cashier)" data-slide="1"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 3 (Dispatcher)" data-slide="2"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 4 (Rider)" data-slide="3"></button>
       </div>
     </div>
     <div class="proj-card-content">
@@ -134,12 +166,28 @@
     <div class="proj-card-top">
       <span class="proj-badge proj-badge--live"><span class="badge-dot" aria-hidden="true"></span>Live</span>
     </div>
-    <div class="proj-thumb-frame proj-showcase">
-      <div class="showcase-screen">
-        <img src="images/reptrail-project/reptrail-home.png" alt="RepTrail weight trend progress screen" class="thumb-phone" loading="lazy">
+    <div class="proj-carousel" data-carousel>
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous RepTrail screenshots" data-dir="-1">‹</button>
+      <div class="proj-thumb-frame proj-showcase carousel-track">
+        <div class="showcase-screen carousel-item" data-index="0">
+          <img src="images/reptrail-project/reptrail-home.png" alt="RepTrail Home progress screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="1">
+          <img src="images/reptrail-project/reptrail-lift.png" alt="RepTrail Lift Log screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="2">
+          <img src="images/reptrail-project/reptrail-compare.png" alt="RepTrail Compare screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="3">
+          <img src="images/reptrail-project/reptrail-review.png" alt="RepTrail Review workout screen" class="thumb-phone" loading="lazy">
+        </div>
       </div>
-      <div class="showcase-screen">
-        <img src="images/reptrail-project/reptrail-review.png" alt="RepTrail workout review with logged lifts" class="thumb-phone" loading="lazy">
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Next RepTrail screenshots" data-dir="1">›</button>
+      <div class="carousel-dots" role="tablist" aria-label="RepTrail screen dots">
+        <button type="button" class="carousel-dot active" aria-label="Screen 1 (Home)" data-slide="0"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 2 (Lift Log)" data-slide="1"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 3 (Compare)" data-slide="2"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 4 (Review)" data-slide="3"></button>
       </div>
     </div>
     <div class="proj-card-content">
@@ -162,12 +210,28 @@
     <div class="proj-card-top">
       <span class="proj-badge proj-badge--live"><span class="badge-dot" aria-hidden="true"></span>Live</span>
     </div>
-    <div class="proj-thumb-frame proj-showcase">
-      <div class="showcase-screen">
-        <img src="images/studyplanner-project/studyplanner-today.png" alt="StudyPlanner tasks and schedule screen" class="thumb-phone" loading="lazy">
+    <div class="proj-carousel" data-carousel>
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous StudyPlanner screenshots" data-dir="-1">‹</button>
+      <div class="proj-thumb-frame proj-showcase carousel-track">
+        <div class="showcase-screen carousel-item" data-index="0">
+          <img src="images/studyplanner-project/studyplanner-today.png" alt="StudyPlanner Today screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="1">
+          <img src="images/studyplanner-project/studyplanner-courses.png" alt="StudyPlanner Courses screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="2">
+          <img src="images/studyplanner-project/studyplanner-focus.png" alt="StudyPlanner Focus screen" class="thumb-phone" loading="lazy">
+        </div>
+        <div class="showcase-screen carousel-item" data-index="3">
+          <img src="images/studyplanner-project/studyplanner-stats.png" alt="StudyPlanner Stats screen" class="thumb-phone" loading="lazy">
+        </div>
       </div>
-      <div class="showcase-screen">
-        <img src="images/studyplanner-project/studyplanner-stats.png" alt="StudyPlanner statistics and study hours screen" class="thumb-phone" loading="lazy">
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Next StudyPlanner screenshots" data-dir="1">›</button>
+      <div class="carousel-dots" role="tablist" aria-label="StudyPlanner screen dots">
+        <button type="button" class="carousel-dot active" aria-label="Screen 1 (Today)" data-slide="0"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 2 (Courses)" data-slide="1"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 3 (Focus)" data-slide="2"></button>
+        <button type="button" class="carousel-dot" aria-label="Screen 4 (Stats)" data-slide="3"></button>
       </div>
     </div>
     <div class="proj-card-content">
@@ -228,9 +292,21 @@
 
         <div class="case-study-media">
           <h4 class="case-study-subheading">Mobile Screenshots</h4>
-          <div class="case-study-gallery" role="group" aria-label="Medicare Track screenshots (select to enlarge)">
-            <figure><button class="shot-trigger" type="button" aria-label="Open Medicare Track welcome screen preview"><img src="images/medicaretract-project/medicaretract-welcomescreen.png" alt="Medicare Track welcome screen for family and caregiver sign-in" loading="lazy"><span class="cap">Welcome <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
-            <figure><button class="shot-trigger" type="button" aria-label="Open Medicare Track admin home screen preview"><img src="images/medicaretract-project/medicaretract-adminhomescreen.png" alt="Medicare Track admin home screen with care and medication tasks" loading="lazy"><span class="cap">Admin <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+          <div class="case-study-carousel" data-carousel>
+            <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous Medicare Track screenshots" data-dir="-1">‹</button>
+            <div class="case-study-gallery carousel-track" role="group" aria-label="Medicare Track screenshots (select to enlarge)">
+              <figure class="carousel-item" data-index="0"><button class="shot-trigger" type="button" aria-label="Open Medicare Track welcome screen preview"><img src="images/medicaretract-project/medicaretract-welcomescreen.png" alt="Medicare Track welcome screen for family and caregiver sign-in" loading="lazy"><span class="cap">Welcome <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="1"><button class="shot-trigger" type="button" aria-label="Open Medicare Track admin home screen preview"><img src="images/medicaretract-project/medicaretract-adminhomescreen.png" alt="Medicare Track admin home screen with care and medication tasks" loading="lazy"><span class="cap">Admin <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="2"><button class="shot-trigger" type="button" aria-label="Open Medicare Track caregiver home screen preview"><img src="images/medicaretract-project/medicaretract-caregiverhomescreen.png" alt="Medicare Track caregiver screen with task completion logging" loading="lazy"><span class="cap">Caregiver <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="3"><button class="shot-trigger" type="button" aria-label="Open Medicare Track family home screen preview"><img src="images/medicaretract-project/medicaretract-familyhomescreen.png" alt="Medicare Track family screen with resident updates" loading="lazy"><span class="cap">Family <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+            </div>
+            <button type="button" class="carousel-arrow carousel-next" aria-label="Next Medicare Track screenshots" data-dir="1">›</button>
+            <div class="carousel-dots" role="tablist" aria-label="Medicare Track screenshots pagination">
+              <button type="button" class="carousel-dot active" aria-label="Screen 1 (Welcome)" data-slide="0"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 2 (Admin)" data-slide="1"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 3 (Caregiver)" data-slide="2"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 4 (Family)" data-slide="3"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -261,9 +337,21 @@
 
         <div class="case-study-media">
           <h4 class="case-study-subheading">Mobile Screenshots</h4>
-          <div class="case-study-gallery" role="group" aria-label="Takoyaki Ordering App screenshots (select to enlarge)">
-            <figure><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App cashier screen preview"><img src="images/takoyakiorderingsystem-project/cashierside.png" alt="Takoyaki Ordering App cashier screen for processing customer orders" loading="lazy"><span class="cap">Cashier <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
-            <figure><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App rider screen preview"><img src="images/takoyakiorderingsystem-project/riderside.png" alt="Takoyaki Ordering App rider screen for managing deliveries" loading="lazy"><span class="cap">Rider <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+          <div class="case-study-carousel" data-carousel>
+            <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous Takoyaki Ordering App screenshots" data-dir="-1">‹</button>
+            <div class="case-study-gallery carousel-track" role="group" aria-label="Takoyaki Ordering App screenshots (select to enlarge)">
+              <figure class="carousel-item" data-index="0"><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App menu screen preview"><img src="images/takoyakiorderingsystem-project/menu.png" alt="Takoyaki Ordering App customer menu and product selection screen" loading="lazy"><span class="cap">Menu <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="1"><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App cashier screen preview"><img src="images/takoyakiorderingsystem-project/cashierside.png" alt="Takoyaki Ordering App cashier screen for processing customer orders" loading="lazy"><span class="cap">Cashier <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="2"><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App dispatcher screen preview"><img src="images/takoyakiorderingsystem-project/dispatcherside.png" alt="Takoyaki Ordering App dispatcher screen for assigning deliveries" loading="lazy"><span class="cap">Dispatcher <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="3"><button class="shot-trigger" type="button" aria-label="Open Takoyaki Ordering App rider screen preview"><img src="images/takoyakiorderingsystem-project/riderside.png" alt="Takoyaki Ordering App rider screen for managing deliveries" loading="lazy"><span class="cap">Rider <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+            </div>
+            <button type="button" class="carousel-arrow carousel-next" aria-label="Next Takoyaki Ordering App screenshots" data-dir="1">›</button>
+            <div class="carousel-dots" role="tablist" aria-label="Takoyaki Ordering App screenshots pagination">
+              <button type="button" class="carousel-dot active" aria-label="Screen 1 (Menu)" data-slide="0"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 2 (Cashier)" data-slide="1"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 3 (Dispatcher)" data-slide="2"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 4 (Rider)" data-slide="3"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -300,9 +388,21 @@
 
         <div class="case-study-media">
           <h4 class="case-study-subheading">Mobile Screenshots</h4>
-          <div class="case-study-gallery" role="group" aria-label="RepTrail screenshots (select to enlarge)">
-            <figure><button class="shot-trigger" type="button" aria-label="Open RepTrail progress screen preview"><img src="images/reptrail-project/reptrail-home.png" alt="RepTrail progress screen showing the user's weight trend" loading="lazy"><span class="cap">Progress <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
-            <figure><button class="shot-trigger" type="button" aria-label="Open RepTrail workout review preview"><img src="images/reptrail-project/reptrail-review.png" alt="RepTrail workout review with logged lifts and session details" loading="lazy"><span class="cap">Review <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+          <div class="case-study-carousel" data-carousel>
+            <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous RepTrail screenshots" data-dir="-1">‹</button>
+            <div class="case-study-gallery carousel-track" role="group" aria-label="RepTrail screenshots (select to enlarge)">
+              <figure class="carousel-item" data-index="0"><button class="shot-trigger" type="button" aria-label="Open RepTrail home progress screen preview"><img src="images/reptrail-project/reptrail-home.png" alt="RepTrail home progress screen showing weight trends" loading="lazy"><span class="cap">Home <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="1"><button class="shot-trigger" type="button" aria-label="Open RepTrail lift log screen preview"><img src="images/reptrail-project/reptrail-lift.png" alt="RepTrail lift log with PR detection and sets" loading="lazy"><span class="cap">Lift Log <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="2"><button class="shot-trigger" type="button" aria-label="Open RepTrail compare screen preview"><img src="images/reptrail-project/reptrail-compare.png" alt="RepTrail then vs now body and lifts comparison" loading="lazy"><span class="cap">Compare <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="3"><button class="shot-trigger" type="button" aria-label="Open RepTrail workout review preview"><img src="images/reptrail-project/reptrail-review.png" alt="RepTrail workout review with logged lifts and session details" loading="lazy"><span class="cap">Review <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+            </div>
+            <button type="button" class="carousel-arrow carousel-next" aria-label="Next RepTrail screenshots" data-dir="1">›</button>
+            <div class="carousel-dots" role="tablist" aria-label="RepTrail screenshots pagination">
+              <button type="button" class="carousel-dot active" aria-label="Screen 1 (Home)" data-slide="0"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 2 (Lift Log)" data-slide="1"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 3 (Compare)" data-slide="2"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 4 (Review)" data-slide="3"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -339,9 +439,21 @@
 
         <div class="case-study-media">
           <h4 class="case-study-subheading">Mobile Screenshots</h4>
-          <div class="case-study-gallery" role="group" aria-label="StudyPlanner screenshots (select to enlarge)">
-            <figure><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Today screen preview"><img src="images/studyplanner-project/studyplanner-today.png" alt="StudyPlanner Today screen listing tasks and deadlines" loading="lazy"><span class="cap">Today <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
-            <figure><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Statistics screen preview"><img src="images/studyplanner-project/studyplanner-stats.png" alt="StudyPlanner Statistics screen summarizing weekly activity" loading="lazy"><span class="cap">Statistics <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+          <div class="case-study-carousel" data-carousel>
+            <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous StudyPlanner screenshots" data-dir="-1">‹</button>
+            <div class="case-study-gallery carousel-track" role="group" aria-label="StudyPlanner screenshots (select to enlarge)">
+              <figure class="carousel-item" data-index="0"><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Today screen preview"><img src="images/studyplanner-project/studyplanner-today.png" alt="StudyPlanner Today screen listing tasks and deadlines" loading="lazy"><span class="cap">Today <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="1"><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Courses screen preview"><img src="images/studyplanner-project/studyplanner-courses.png" alt="StudyPlanner Courses screen organizing subjects" loading="lazy"><span class="cap">Courses <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="2"><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Focus screen preview"><img src="images/studyplanner-project/studyplanner-focus.png" alt="StudyPlanner Focus screen with Pomodoro timer" loading="lazy"><span class="cap">Focus <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+              <figure class="carousel-item" data-index="3"><button class="shot-trigger" type="button" aria-label="Open StudyPlanner Statistics screen preview"><img src="images/studyplanner-project/studyplanner-stats.png" alt="StudyPlanner Statistics screen summarizing weekly activity" loading="lazy"><span class="cap">Stats <span aria-hidden="true">&#x2922;</span><span class="sr">, opens an image preview</span></span></button></figure>
+            </div>
+            <button type="button" class="carousel-arrow carousel-next" aria-label="Next StudyPlanner screenshots" data-dir="1">›</button>
+            <div class="carousel-dots" role="tablist" aria-label="StudyPlanner screenshots pagination">
+              <button type="button" class="carousel-dot active" aria-label="Screen 1 (Today)" data-slide="0"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 2 (Courses)" data-slide="1"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 3 (Focus)" data-slide="2"></button>
+              <button type="button" class="carousel-dot" aria-label="Screen 4 (Stats)" data-slide="3"></button>
+            </div>
           </div>
         </div>
       </div>
