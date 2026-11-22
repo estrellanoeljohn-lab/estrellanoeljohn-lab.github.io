@@ -47,7 +47,6 @@
       const metaTheme = $('meta[name="theme-color"]');
       if (metaTheme) {
         metaTheme.setAttribute('content', isShrine ? '#1a0005' : '#07070b');
-        // Remove media so a single value takes effect
         metaTheme.removeAttribute('media');
       }
     }
@@ -71,14 +70,15 @@
   }
 
   /* ----------------------------------------------------------
-     2. Black Flash Click Effect
+     2. Black Flash Click Effect (Event delegation)
      ---------------------------------------------------------- */
   function initBlackFlash() {
-    $$('.btn.primary').forEach((btn) => {
-      btn.addEventListener('click', () => {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn.primary');
+      if (btn) {
         btn.classList.add('black-flash');
         setTimeout(() => btn.classList.remove('black-flash'), 300);
-      });
+      }
     });
   }
 
@@ -90,7 +90,7 @@
 
   function refreshWispColors() {
     const style = getComputedStyle(document.documentElement);
-    wispColors.accent = style.getPropertyValue('--accent').trim() || '#00f0ff';
+    wispColors.accent = style.getPropertyValue('--accent-primary').trim() || style.getPropertyValue('--accent').trim() || '#00f0ff';
     wispColors.accentAlt =
       style.getPropertyValue('--accent-alt').trim() || '#5a189a';
   }
@@ -199,7 +199,7 @@
      4. Domain Expansion Scroll Reveal
      ---------------------------------------------------------- */
   function initScrollReveal() {
-    const targets = $$('section, .proj, .help div, .skills div');
+    const targets = $$('section, .proj-card, .proj, .help div, .skills div');
     if (!targets.length) return;
 
     // If reduced motion, make everything visible immediately
@@ -231,14 +231,13 @@
      5. Japanese Watermarks Injection
      ---------------------------------------------------------- */
   function initWatermarks() {
-    const kanji = ['領域展開', '呪力', '無量空処', '黒閃'];
+    const kanji = ['領域展開', '術式', '呪力', '無量空処', '黒閃'];
     const sections = $$('section');
 
     sections.forEach((section, i) => {
       // Avoid duplicate watermarks
       if (section.querySelector('.watermark')) return;
 
-      // Make sure section can contain an absolute child
       if (getComputedStyle(section).position === 'static') {
         section.style.position = 'relative';
       }
@@ -248,7 +247,6 @@
       mark.textContent = kanji[i % kanji.length];
       mark.setAttribute('aria-hidden', 'true');
 
-      // Inline positioning (rest comes from CSS .watermark class)
       Object.assign(mark.style, {
         position: 'absolute',
         writingMode: 'vertical-rl',
@@ -262,7 +260,7 @@
   }
 
   /* ----------------------------------------------------------
-     6. Hero Corner Reticles (ensure positioning context)
+     6. Hero Corner Reticles
      ---------------------------------------------------------- */
   function initHeroReticles() {
     const hero = $('.hero');
@@ -272,30 +270,261 @@
   }
 
   /* ----------------------------------------------------------
-     7. Navbar Active Section Highlight
+     7. Dynamic Navbar Active Section Tracking
      ---------------------------------------------------------- */
   function initNavHighlight() {
     const sections = $$('section[id]');
     const navLinks = $$('header nav a');
     if (!sections.length || !navLinks.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.getAttribute('id');
-          const link = $(`header nav a[href="#${id}"]`);
-          if (!link) return;
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 140; // account for header offset
+      let currentSectionId = '';
 
-          if (entry.isIntersecting) {
-            navLinks.forEach((a) => a.classList.remove('active'));
-            link.classList.add('active');
-          }
-        });
+      for (const section of sections) {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = section.getAttribute('id');
+          break;
+        }
+      }
+
+      // If scrolled to near the bottom of the page, activate the contact link
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        currentSectionId = 'contact';
+      }
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (currentSectionId && href === `#${currentSectionId}`) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    let ticking = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateActiveNav();
+            ticking = false;
+          });
+          ticking = true;
+        }
       },
-      { threshold: 0.2, rootMargin: '-80px 0px -40% 0px' }
+      { passive: true }
     );
 
-    sections.forEach((s) => observer.observe(s));
+    updateActiveNav();
+  }
+
+  /* ----------------------------------------------------------
+     8. Project Category Filtering (data-category)
+     ---------------------------------------------------------- */
+  function initProjectFilters() {
+    const filterTabs = $$('.filter-tab');
+    const cards = $$('.proj-card, .project-card');
+    if (!filterTabs.length || !cards.length) return;
+
+    filterTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        if (tab.classList.contains('active')) return;
+
+        const filter = tab.dataset.filter;
+
+        filterTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        cards.forEach((card) => {
+          const category = card.dataset.category;
+          const matches = filter === 'all' || category === filter;
+
+          if (matches) {
+            card.classList.remove('is-collapsed');
+            requestAnimationFrame(() => {
+              card.classList.remove('is-hidden');
+            });
+          } else {
+            card.classList.add('is-hidden');
+            setTimeout(() => {
+              if (card.classList.contains('is-hidden')) {
+                card.classList.add('is-collapsed');
+              }
+            }, 250);
+          }
+        });
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------
+     9. Domain Expansion Case Study Modal
+     ---------------------------------------------------------- */
+  function initCaseStudyModal() {
+    const modal = $('#caseStudyModal');
+    const closeBtn = $('#caseStudyCloseBtn');
+    const backdrop = $('#caseStudyBackdrop');
+    if (!modal || !closeBtn) return;
+
+    const panels = $$('.case-study-panel', modal);
+    const triggers = $$('.proj-case-btn');
+    let triggerSource = null;
+
+    function openModal(panelId, triggerEl) {
+      triggerSource = triggerEl;
+      panels.forEach((p) => {
+        p.hidden = p.id !== panelId;
+      });
+
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      void modal.offsetWidth; // Force layout recalculation for smooth transition
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      if (!modal.classList.contains('is-open')) return;
+
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+
+      setTimeout(() => {
+        if (!modal.classList.contains('is-open')) {
+          modal.hidden = true;
+          panels.forEach((p) => (p.hidden = true));
+          if (triggerSource && typeof triggerSource.focus === 'function') {
+            triggerSource.focus();
+          }
+        }
+      }, 300);
+    }
+
+    triggers.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.dataset.modal;
+        if (modalId) {
+          openModal(modalId, btn);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const lightbox = $('#imageLightbox');
+      if (lightbox && lightbox.classList.contains('is-open')) {
+        return; // Lightbox handles Escape
+      }
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
+     10. Lightweight Vanilla Image Lightbox
+     ---------------------------------------------------------- */
+  function initImageLightbox() {
+    const lightbox = $('#imageLightbox');
+    const lightboxImg = $('#lightboxImg');
+    const lightboxCap = $('#lightboxCap');
+    const closeBtn = $('#lightboxCloseBtn');
+    const backdrop = $('#lightboxBackdrop');
+    if (!lightbox || !lightboxImg) return;
+
+    let previousFocus = null;
+
+    function openLightbox(src, alt, caption, triggerEl) {
+      previousFocus = triggerEl;
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      if (lightboxCap) {
+        lightboxCap.textContent = caption || alt || '';
+        lightboxCap.style.display = caption || alt ? 'block' : 'none';
+      }
+
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      void lightbox.offsetWidth; // Force reflow
+      lightbox.classList.add('is-open');
+
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      if (!lightbox.classList.contains('is-open')) return;
+
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+
+      setTimeout(() => {
+        if (!lightbox.classList.contains('is-open')) {
+          lightbox.hidden = true;
+          lightboxImg.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\'/%3E';
+          if (previousFocus && typeof previousFocus.focus === 'function') {
+            previousFocus.focus();
+          }
+        }
+      }, 250);
+    }
+
+    // Attach to all screenshot triggers in the Case Study gallery
+    $$('.case-study-gallery .shot-trigger').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const img = btn.querySelector('img');
+        if (!img) return;
+        const cap = btn.querySelector('.cap');
+        let capText = '';
+        if (cap) {
+          const clone = cap.cloneNode(true);
+          clone.querySelectorAll('.sr, [aria-hidden="true"]').forEach((el) => el.remove());
+          capText = clone.textContent.trim();
+        }
+        openLightbox(img.src, img.alt, capText, btn);
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+        e.stopImmediatePropagation();
+        closeLightbox();
+      }
+    });
   }
 
   /* ----------------------------------------------------------
@@ -309,5 +538,8 @@
     initWatermarks();
     initHeroReticles();
     initNavHighlight();
+    initProjectFilters();
+    initCaseStudyModal();
+    initImageLightbox();
   });
 })();
