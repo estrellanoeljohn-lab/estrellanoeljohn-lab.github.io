@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Shippori+Mincho:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=14">
-<script src="script.js?v=14" defer></script>
+<link rel="stylesheet" href="styles.css?v=15">
+<script src="script.js?v=15" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -23,14 +23,17 @@
 <header class="top">
 <div class="wrap">
 <a class="brand" href="#top">Noel John Estrella</a>
-<nav aria-label="Main">
+<nav id="mainNav" aria-label="Main">
 <a href="#projects">Projects</a>
 <a href="#help">What I can do</a>
 <a href="#skills">Skills</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
 </nav>
+<div class="header-actions">
 <button class="theme-toggle" type="button" aria-label="Switch theme between Limitless and Shrine mode" title="Switch Cursed Technique">∞</button>
+<button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="mainNav" aria-expanded="false">☰</button>
+</div>
 </div>
 </header>
 

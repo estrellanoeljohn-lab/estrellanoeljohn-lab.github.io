@@ -70,6 +70,47 @@
   }
 
   /* ----------------------------------------------------------
+     1a. Compact Mobile Navigation Drawer
+     ---------------------------------------------------------- */
+  function initMobileNav() {
+    const header = $('.top');
+    const toggle = $('.menu-toggle', header);
+    const nav = $('#mainNav', header);
+    if (!header || !toggle || !nav) return;
+
+    function setOpen(isOpen) {
+      header.classList.toggle('nav-open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    }
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    nav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (header.classList.contains('nav-open') && !header.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) setOpen(false);
+    });
+  }
+
+  /* ----------------------------------------------------------
      2. Black Flash Click Effect (Event delegation)
      ---------------------------------------------------------- */
   function initBlackFlash() {
@@ -670,6 +711,7 @@
      ---------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
+    initMobileNav();
     initBlackFlash();
     initWisps();
     initScrollReveal();
